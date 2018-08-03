@@ -1,0 +1,12 @@
+pc:begin; sp:stack;
+n:0; ra:0;
+
+begin: factra 7 fact pc 1? factra: stack 1 |.
+
+fact:
+	n 1? ra 1?
+	n@ l: n] n@* l pc n@2-+?
+	ra@ pc 1?
+
+stack:
+

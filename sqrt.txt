@@ -1,0 +1,13 @@
+pc:begin; sp:stack;
+
+co:200000000; eo:8-; c:0; e:0; i:0; x:0;
+
+begin: 0 0 sqrta co@ eo@ sqrt pc 1? sqrta: stack 2.
+
+sqrt:
+    e 1? c 1?
+    c@10000/ x 1?
+    l: x@ i 1? x@c@x@/+2/ x 1? l pc i@x@-+?
+    x@ sp@5-+ 1? e@2/ sp@4-+ 1? pc 1?
+
+stack:

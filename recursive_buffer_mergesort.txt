@@ -1,0 +1,28 @@
+pc:begin; sp:stack;
+
+Vb:0; Va:0; a:0; b:0; c:0; n:0;
+
+begin: msc V no@ ms pc 1? msc: V no@ | .
+
+ms:
+    n 1? Va 1? Va@ n@
+    ret pc n@ 1-+!?
+    msa Va@ n@2/ ms pc 1? msa:
+    n 1? Va 1? Va@ n@
+    msb Va@n@2/+ n@2/n@2%+ ms pc 1? msb:
+
+    n 1? Va 1? Va@ n@
+    0 a 1? 0 b 1? 0 c 1? Va@ n@2/ + Vb 1?
+    merge:
+        cp pc c@ n@-+<!?
+        ea pc a@ n@2/-+<? Vb@ b@+@ Vc c@+ 1? c[ b[ merge pc 1?
+        ea:
+            eb pc b@ n@2/n@2%+-+<? Va@ a@+@ Vc c@+ 1? c[ a[ merge pc 1?
+        eb:
+            ab pc Va@ a@+@ Vb@ b@+@-+<? Vb@ b@+@ Vc c@+ 1? c[ b[ merge pc 1?
+        ab:
+            Va@ a@+@ Vc c@+ 1? c[ a[ merge pc 1?
+    cp:
+        0 a 1? l: Vc a@+@ Va@ a@+ 1? a[ l pc a@n@-+?
+
+    ret: sp] sp] pc 1?

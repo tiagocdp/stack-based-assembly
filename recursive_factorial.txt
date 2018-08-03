@@ -1,0 +1,13 @@
+pc:begin; sp:stack;
+
+no:8; n:0;
+
+begin: 0 factb no@ fact pc 1? factb: stack 1| .
+
+fact:
+    n 1?
+    ret pc n@!?
+    n@ 0 facta n@1-+ fact pc 1? facta: * sp@4-+ 1? pc 1?
+    ret: 1 sp@4-+ 1? pc 1?
+
+stack:
